@@ -47,13 +47,24 @@ namespace slgMultifunctional.Controllers
 
         //public string Welcome()
         //public string Welcome(string name, int numTimes = 1)
-        public string Welcome(string name, int ID = 1)
-        {
+        //public string Welcome(string name, int ID = 1)
+        //{
             //return "This is the Welcome action method...";
 
             //Uses HtmlEncoder.Default.Encode to protect the app from malicious input(namely JavaScript).
             //return HtmlEncoder.Default.Encode($"Hello {name}, NumTimes is: {numTimes}");
-            return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
+        //    return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
+        //}
+
+
+        // Now we use the dynamic object and predefoined object, ViewData that will contain data the view can use. 
+        // this is proper seperation of MVC duties
+        public IActionResult Welcome(string name, int numTimes = 1)
+        {
+            ViewData["Message"] = "Hello " + name;
+            ViewData["NumTimes"] = numTimes;
+
+            return View();
         }
     }
 }
